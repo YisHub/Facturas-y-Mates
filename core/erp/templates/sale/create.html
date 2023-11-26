@@ -1,0 +1,154 @@
+{% extends 'list.html' %}
+{% load static %}
+{% block head_list %}
+  <!-- select2 -->
+  <link href="{% static 'lib/select2-4.0.13/css/select2.min.css' %}" rel="stylesheet"/>
+  <link href="{% static 'lib/select2-4.0.13/css/select2-bootstrap-5-theme.min.css' %}" rel="stylesheet"/>
+  <script src="{% static 'lib/select2-4.0.13/js/select2.min.js' %}"></script>
+  <script src="{% static 'lib/select2-4.0.13/js/i18n/es.js' %}"></script>
+  <!-- sale.js -->
+  <script src="{% static 'sale/js/form.js' %}"></script>
+  <!-- moment -->
+  <script src="{% static 'lib/moment.js-2.29.4/moment.js' %}"></script>
+  <!-- tempus -->
+  <link href="{% static 'lib/tempusdominus-bootstrap-4/tempusdominus-bootstrap-4.min.css' %}" rel="stylesheet" />
+  <script src="{% static 'lib/tempusdominus-bootstrap-4/tempusdominus-bootstrap-4.min.js' %}"></script>
+  <!-- touchspin -->
+  <link href="{% static 'lib/bootstrap-touchspin-master/jquery.bootstrap-touchspin.css' %}" rel="stylesheet" />
+  <script src="{% static 'lib/bootstrap-touchspin-master/jquery.bootstrap-touchspin.js' %}"></script>
+{% endblock %}
+{% block content %}
+    
+    <form method="post">
+        <div class="card card-primary">
+            <div class="card-header">
+                <h3 class="card-title">
+                    {% if action == 'add' %}
+                    <i class="fas fa-plus"></i>
+                    {% else %}
+                    <i class="fas fa-edit"></i>
+                    {% endif %}
+                    {{ title }}
+                </h3>
+            
+            </div>
+            <div class="card-body ">
+    
+                <div class="row">
+                    <div class="col-lg-8">
+    
+                        <div class="card card-secondary">
+                            <div class="card-header">
+                            <h3 class="card-title "><i class="fas fa-boxes"></i> Detalle de producto</h3>
+                            </div>
+                            <div class="card-body">
+    
+                                <div class="form-grup">
+                                    <label>Buscador de productos:</label>
+                                    <div class="input-group ">
+                                        {{ form.search }}
+                                    </div>
+                                </div>
+                                <hr>
+                                <div id="error-block"></div>
+                    
+                                <button type="button" class="btn btn-danger btn-sm btnRemoveAll" >
+                                    <i class="fas fa-trash" ></i> Eliminar todo
+                                </button>
+                                <hr>
+                                <table class="table" id="tblProducts">
+                                    <thead>
+                                        <tr>
+                                            <th>Eliminar</th>
+                                            <th>Producto</th>
+                                            <th>Categoría</th>
+                                            <th>PVP</th>
+                                            <th>Cantidad</th>
+                                            <th>Subtotal</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                    </tbody>
+                                </table>
+                            
+                            </div>
+                        </div>
+                        </div>
+    
+                        <div class="col-lg-4">
+                            <div class="card card-secondary">
+                                <input type="hidden" name="action" value="{{ action }}">
+                                <div class="card-header">
+                                <h3 class="card-title"><i class="fas fa-shopping-cart"></i> Datos de la factura</h3>
+                                </div>
+                                <div class="card-body datepicker2 position-relative border-1 ">
+                                    <label>Fecha de venta</label>
+                                    {{ form.date_joined }}
+                                    
+                                </div>
+                                <div class="card-body">
+                                    <label>Cliente</label>
+                                    {{ form.cli }}
+                                </div>
+                                <div class="card-body">
+                                    <label>Subtotal</label>
+                                    {{ form.subtotal }}
+                                </div>
+                                <div class="card-body">
+                                    <label>IVA</label>
+                                    {{ form.iva }}
+                                </div>
+                                <div class="card-body">
+                                    <label>Total IVA</label>
+                                    <input type="text" class="form-control" readonly name="ivacalc" value="0.00" >
+                                </div>
+                                <div class="card-body">
+                                    <label>Total a pagar</label>
+                                    {{ form.total }}
+                                </div>
+                            </div>
+                        </div>
+    
+                    </div>
+    
+                </div>
+            </div>
+            <div class="card-footer">
+                <button type="submit" class="btn btn-primary btn-flat"><i class="fas fa-save"></i> Guardar registro</button>  
+                <a href="{% url 'erp:sale_list' %}" class="btn btn-danger btn-flat">
+                  <i class="fas fa-times"></i> Cancelar
+                </a>
+              </div>
+        </div>
+    </form>
+
+  {% block javascript %}
+    <script type="application/javascript">
+        $(function () {
+            $('#data').DataTable({
+                responsive: true,
+                autoWidth: false,
+                language: {
+                    url: 'https://cdn.datatables.net/plug-ins/1.13.6/i18n/es-AR.json'
+                },
+            });
+
+            $('.btnTest').on('click', function () {
+                $.ajax({
+                    url: '{% url 'erp:category_list' %}',
+                    type: 'POST',
+                    data: {id: 1},
+                    dataType: 'json'
+                }).done(function (data) {
+                    console.log(data);
+                }).fail(function (jqXHR, textStatus, errorThrown) {
+                    alert(textStatus + ': ' + errorThrown);
+                }).always(function (data) {
+
+                });
+            });
+        });
+    </script>
+
+  {% endblock %}
+{% endblock %}

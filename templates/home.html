@@ -1,0 +1,45 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta http-equiv="x-ua-compatible" content="ie=edge" />
+    <title>{{ title }}</title>
+
+    <link rel="stylesheet" href="{% static 'lib/datatables-1.13.6/Bootstrap-5-5.3.0/css/bootstrap.min.css' %}" />
+
+    <!-- Font Awesome Icons -->
+    <link rel="stylesheet" href="{% static 'lib/adminlte-3.2.0/plugins/font-awesome-5.11.1/css/all.min.css' %}" />
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="{% static 'lib/adminlte-3.2.0/plugins/fontawesome-free/css/all.min.css' %}" />
+    <!-- Theme style -->
+    <link rel="stylesheet" href="{% static 'lib/adminlte-3.2.0/css/adminlte.min.css' %}" />
+    <!-- overlayScrollbars -->
+    <link rel="stylesheet" href="{% static 'lib/adminlte-3.2.0/plugins/overlayScrollbars/css/OverlayScrollbars.min.css' %}" />
+    <!-- Google Font: Source Sans Pro -->
+    <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet" />
+    <!-- Google Font: Source Sans Pro -->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback" />
+    <!-- jQuery -->
+    <script src="{% static 'lib/adminlte-3.2.0/plugins/jquery/jquery.min.js' %}"></script>
+    <!-- Bootstrap 5 -->
+    <script src="{% static 'lib/adminlte-3.2.0/plugins/bootstrap/js/bootstrap.min.js' %}"></script>
+    <!-- Bootstrap 4 -->
+    <script src="{% static 'lib/datatables-1.13.6/Bootstrap-5-5.3.0/js/bootstrap.bundle.min.js' %}"></script>
+    <!-- overlayScrollbars -->
+    <script src="{% static 'lib/adminlte-3.2.0/plugins/overlayScrollbars/js/jquery.overlayScrollbars.min.js' %}"></script>
+    <!-- AdminLTE App -->
+    <script src="{% static 'lib/adminlte-3.2.0/js/adminlte.min.js' %}"></script>
+    <!-- Functions -->
+    <script src="{% static 'js/functions.js' %}"></script>
+    <!-- Block head -->
+    <link rel="stylesheet" href="{% static 'lib/datatables-1.13.6/spanish.txt' %}" />
+    {% block head %}
+
+    {% endblock %}
+  </head>
+  {% block body %}
+
+  {% endblock %}
+</html>

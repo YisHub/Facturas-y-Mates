@@ -1,0 +1,84 @@
+{% load static %}
+
+<!-- Control Sidebar -->
+<aside class="control-sidebar control-sidebar-dark">
+  <!-- Control sidebar content goes here -->
+</aside>
+<!-- /.control-sidebar -->
+<!-- Main Sidebar Container -->
+<aside class="main-sidebar sidebar-dark-primary elevation-4">
+  <!-- Brand Logo -->
+  <a href="{% url 'home' %}" class="brand-link elevation-4">
+    <img src="{% static 'img/logo1.jpeg' %}" alt="AdminLTE Logo" class="brand-image img-circle elevation-3" style="opacity: .8" />
+    <span class="brand-text font-weight-light">Facturacion</span>
+  </a>
+
+  <!-- Sidebar -->
+  <div class="sidebar">
+    <!-- Sidebar user (optional) -->
+    <style>
+      .rounded-circle-container {
+        width: 30px; /* Ajusta el ancho deseado */
+        height: 30px; /* Ajusta la altura deseada */
+        border-radius: 50%;
+        overflow: hidden;
+        position: relative;
+      }
+      
+      .rounded-circle-container img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        object-position: center center;
+      }
+    </style>
+    <div class="user-panel mt-3 pb-3 mb-3 d-flex align-items-center">
+      <div class="image">
+        <div class="rounded-circle-container">
+          <img src="{{ user.get_image }}" alt="User Image" />
+        </div>
+      </div>
+      <div class="info">
+        <a href="#" class="d-block">{{ user.get_username }}</a>
+      </div>
+    </div>
+
+    <!-- Sidebar Menu -->
+    <nav class="mt-2">
+      <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
+        <li class="nav-item">
+          <a href="{% url 'erp:category_list' %}" class="nav-link">
+            <i class="fas fa-truck-loading nav-icon"></i>
+            <p>Categorías</p>
+          </a>
+        </li>
+        <li class="nav-item">
+          <a href="{% url 'erp:product_list' %}" class="nav-link">
+            <i class="fas fa-boxes nav-icon"></i>
+            <p>Productos</p>
+          </a>
+        </li>
+        <li class="nav-item">
+          <a href="{% url 'erp:client_list' %}" class="nav-link">
+            <i class="fas fa-users nav-icon"></i>
+            <p>Clientes</p>
+          </a>
+        </li>
+        <li class="nav-item">
+          <a href="{% url 'erp:sale_list' %}" class="nav-link">
+            <i class="fas fa-shopping-cart nav-icon"></i>
+            <p>Ventas</p>
+          </a>
+        </li>
+        <li class="nav-item">
+          <a href="{% url 'erp:test' %}" class="nav-link">
+            <i class="fas fa-code nav-icon"></i>
+            <p>Test</p>
+          </a>
+        </li>
+      </ul>
+    </nav>
+    <!-- /.sidebar-menu -->
+  </div>
+  <!-- /.sidebar -->
+</aside>

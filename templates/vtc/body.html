@@ -1,0 +1,74 @@
+{% extends 'home.html' %}
+{% block body %}
+  {% load static %}
+
+  <body class="hold-transition sidebar-mini layout-navbar-fixed">
+    <!-- Site wrapper -->
+    <div class="wrapper">
+      <!-- Header -->
+      {% include 'vtc/header.html' %}
+      <!-- Sidebar -->
+      {% include 'vtc/sidebar.html' %}
+      <!-- Content -->
+
+      <!-- Content Wrapper. Contains page content -->
+      <div class="content-wrapper">
+        <!-- Content Header (Page header) -->
+        <section class="content-header">
+          <div class="container-fluid">
+            <div class="row mb-2">
+              <div class="col-sm-6">
+                <h1></h1>
+              </div>
+              <div class="col-sm-6">
+                <ol class="breadcrumb float-sm-right">
+                  <li class="breadcrumb-item">
+                    <a href="{% url 'erp:dashboard' %}">Home</a>
+                  </li>
+                  <li class="breadcrumb-item">
+                    <a href="{{ list_url }}">{{ entity }}</a>
+                  </li>
+                </ol>
+              </div>
+            </div>
+          </div>
+          <!-- /.container-fluid -->
+        </section>
+
+        <!-- Main content -->
+        <section class="content">
+          {% if messages %}
+          <div class="alert alert-danger alert-dismissible " role="alert">
+            <h5><i class="fas fa-ban me-2"></i> Ha ocurrido un error!</h5>
+              {% for message in messages %}
+                <li>
+
+                  {{ message }}
+                  
+                </li>
+                  
+              {% endfor %}
+              <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+          </div>
+          {% endif %}     
+          
+          {% block content %}
+
+          {% endblock %}
+        </section>
+        <!-- /.content -->
+      </div>
+      <!-- /.content-wrapper -->
+
+      <footer class="main-footer">
+        <div class="float-right d-none d-sm-block">
+          <b>Version</b> 3.2.0
+        </div>
+        <strong>Copyright &copy; 2014-2021 <a href="https://adminlte.io">AdminLTE.io</a>.</strong> All rights reserved.
+      </footer>
+
+    </div>
+  </body>
+
+  
+{% endblock %}

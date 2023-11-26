@@ -1,0 +1,74 @@
+{% extends 'list.html' %}
+{% load static %}
+{% block head_list %}
+  <script src="{% static 'client/js/list.js' %}"></script>
+{% endblock %}
+
+{% block columns %}
+  <tr>
+    <th scope="col" style="width: 10%;">Nro</th>
+    <th scope="col" style="width: 15%;">Nombres</th>
+    <th scope="col" style="width: 15%;">Apellidos</th>
+    <th scope="col" style="width: 10%;">Dni</th>
+    <th scope="col" style="width: 15%;">Fecha de nacimiento</th>
+    <th scope="col" style="width: 15%;">Sexo</th>
+    <th scope="col" style="width: 20%;">Opciones</th>
+  </tr>
+{% endblock %}
+
+{% block rows %}
+
+{% endblock %}
+
+{% block buttons_list %}
+  <a class="btn btn-primary btn-flat btnAdd" style="color: white;"><i class="fas fa-plus"></i> Nuevo registro</a>
+  <a href="{{ list_url }}" class="btn btn-success btn-flat"><i class="fas fa-sync"></i> Actualizar</a>
+{% endblock %}
+
+{% block javascript %}
+  <!-- Modal -->
+  <style>
+    /* Estilos personalizados para el título del modal */
+    .modal-title {
+      font-size: 24px; /* Tamaño de fuente más grande para el título */
+    }
+  
+    /* Estilos personalizados para el contenido del modal */
+    .modal-body, .form-group label, .form-control {
+      font-size: 18px; /* Tamaño de fuente más grande para el contenido y etiquetas */
+    }
+  </style>
+  
+  <div class="modal fade" id="myModalClient" tabindex="-1" aria-labelledby="ajaxModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="ajaxModalLabel">
+            <i class="fas fa-search"></i> <span></span>
+          </h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <form method="post" action="." enctype="multipart/form-data">
+          <div class="modal-body">
+            <div id="error-block"></div>
+            <div class="container-fluid">
+              <input name="action" type="hidden" value="add" />
+              <input name="id" id="id" type="hidden" value="0" />
+              {% for field in form.visible_fields %}
+                <div class="form-group">
+                  <label for="email">{{ field.label }}:</label>
+                  {{ field }}
+                </div>
+              {% endfor %}
+            </div>
+          </div>
+          <div class="modal-footer">
+            <button type="submit" class="btn btn-primary btn-flat btn-block">
+              <i class="fas fa-save"></i> Guardar
+            </button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>  
+{% endblock %}

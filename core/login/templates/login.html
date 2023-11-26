@@ -1,0 +1,67 @@
+{% extends 'index.html' %}
+{% block content %}
+
+<div class="d-flex justify-content-center align-items-center" style="height: calc(100vh - 60px);">
+  <div class="card card-outline card-primary">
+      <div class="card-header text-center">
+          <a href="{% url 'home' %}" class="h1"><b>Admin</b>LTE</a>
+      </div>
+      <div class="card-body">
+          <p class="login-box-msg">{{ title }}</p>
+          
+          <form action="." method="post">
+              <input type="hidden" name="next" value="{{ next }}">
+              {% csrf_token %}
+
+              
+              {% if form.errors %}
+              <div class="alert alert-danger alert-dismissible">
+                  <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+                  <h5><i class="icon fas fa-ban"></i> Ha ocurrido un error al querer guardar el registro</h5>
+                  <ul>
+                      {% for field in form %}
+                      {% for error in field.errors %}
+                      <li>{{ error }}</li>
+                      {% endfor %}
+                      {% endfor %}
+                      <p>{{ form.non_field_errors }}</p>
+                  </ul>
+              </div>
+              
+              {% endif %}
+              <div class="input-group mb-3">
+                  {{ form.username }}
+                  <!-- <input type="email" class="form-control" placeholder="Email"> -->
+                  <div class="input-group-append">
+                      <div class="input-group-text">
+                          <span class="fas fa-envelope"></span>
+                      </div>
+                  </div>
+              </div>
+              <div class="input-group mb-3">
+                  {{ form.password }}
+                  <!-- <input type="password" class="form-control" placeholder="Password"> -->
+                  <div class="input-group-append">
+                      <div class="input-group-text">
+                          <span class="fas fa-lock"></span>
+                      </div>
+                  </div>
+              </div>
+              <div class="row">
+                  <!-- /.col -->
+                  <div class="col-12">
+                      <button type="submit" class="btn btn-primary btn-block">Sign In</button>
+                  </div>
+                  <!-- /.col -->
+              </div>
+          </form>
+
+      </div>
+      <!-- /.card-body -->
+  </div>
+  <!-- /.card -->
+</div>
+<!-- /.login-box -->
+
+
+{% endblock %}

@@ -1,0 +1,21 @@
+{% extends 'list.html' %}
+{% load static %}
+{% block head_list %}
+    <script src="{% static 'sale/js/list.js' %}"></script>
+{% endblock %}
+
+{% block columns %}
+    <tr>
+        <th scope="col" style="width: 10%;">Numero</th>
+        <th scope="col" style="width: 10%;">Cliente</th>
+        <th scope="col" style="width: 20%;">Fecha</th>
+        <th scope="col" style="width: 25%;">Subtotal</th>
+        <th scope="col" style="width: 15%;">Iva</th>
+        <th scope="col" style="width: 10%;">Total</th>
+        <th scope="col" style="width: 10%;">Opciones</th>
+    </tr>
+{% endblock %}
+
+{% block javascript %}
+
+{% endblock %}
