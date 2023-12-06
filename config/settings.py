@@ -132,6 +132,10 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 
+STATICFILES_DIRS = [
+    os.path.join(BASE_DIR, "static"),
+ ]
+
 if not DEBUG:    # Tell Django to copy statics to the `staticfiles` directory
     # in your application directory on Render.
     STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
@@ -139,7 +143,9 @@ if not DEBUG:    # Tell Django to copy statics to the `staticfiles` directory
     # and creating unique names for each version so they can safely be cached forever.
     STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 
-
+# STATICFILES_DIRS = [
+#    os.path.join(BASE_DIR, "static"),
+# ]
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.2/ref/settings/#default-auto-field
