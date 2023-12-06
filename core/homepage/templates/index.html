@@ -4,7 +4,7 @@
     <!-- Responsive navbar-->
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
         <div class="container">
-            <a class="navbar-brand" href="#">Start Bootstrap</a>
+            <a class="navbar-brand" href="{% url 'home' %}">Facturas y Mates</a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
@@ -29,22 +29,112 @@
         </div>
     </nav>
     <!-- Page content-->
-
     {% block content %}
-    
-    <div class="container">
-        <div class="text-center mt-5">
-            <h1>A Bootstrap 5 Starter Template</h1>
-            <p class="lead">A complete project boilerplate built with Bootstrap</p>
-            <p>Bootstrap v5.2.3</p>
+
+    <div class="container mt-4">
+        <div class="row">
+            <div class="col-lg-8 offset-lg-2">
+                <h1 class="text-center mb-4">Facturas y Mates</h1>
+                <p class="lead">Facturas y Mates es una aplicación web desarrollada con Django para gestionar inventario, ventas y facturación.</p>
+                <!-- Funcionalidades -->
+                <h2 class="mt-5">Funcionalidades</h2>
+                <ul>
+                    <li>Gestión de inventario
+                        <ul>
+                            <li>Registro de productos con categorización</li>
+                            <li>Seguimiento de stock disponible</li>
+                            <li>Reportes de inventario <em>(próximamente)</em></li>
+                        </ul>
+                    </li>
+                    <li>Facturación
+                        <ul>
+                            <li>Generación y envío de facturas</li>
+                            <li>Seguimiento a facturas emitidas</li>
+                        </ul>
+                    </li>
+                    <li>Gestión de Clientes
+                        <ul>
+                            <li>Registro de datos de clientes</li>
+                            <li>Listado y búsqueda de clientes</li>
+                            <li>Vinculación de facturas a clientes</li>
+                        </ul>
+                    </li>
+                </ul>
+                <!-- Tecnologías -->
+                <h2 class="mt-5">Tecnologías</h2>
+                <ul>
+                    <li>Python</li>
+                    <li>Django</li>
+                    <li>PostgreSQL</li>
+                    <li>Bootstrap</li>
+                    <li>jQuery</li>
+                    <li>DataTables</li>
+                    <li>Select2</li>
+                    <li>Pillow</li>
+                </ul>
+                <!-- Sección de usuarios para iniciar sesión -->
+                <h2 class="mt-5">Usuarios para Iniciar Sesión</h2>
+                <p>Para acceder a la página de inicio de sesión, puedes utilizar los siguientes usuarios:</p>
+                <ul>
+                    <li><strong>Usuario:</strong> yis | <strong>Contraseña:</strong> 8119 (Administrador)</li>
+                    <li><strong>Usuario:</strong> operario | <strong>Contraseña:</strong> pepito1234 (Sin privilegios)</li>
+                </ul>
+                <!-- Instalación -->
+                <h2 class="mt-5">Instalación</h2>
+                <ol>
+                    <li>Clona este repositorio en tu máquina local:
+                        <pre class="code-block"><code>git clone https://github.com/YisHub/Facturas-y-Mates</code></pre>
+                    </li>
+                    <li>Instalar virtualenvwrapper:
+                        <pre class="code-block"><code>pip install virtualenvwrapper</code></pre>
+                    </li>
+                    <li>Crear entorno virtual:
+                        <pre class="code-block"><code>mkvirtualenv facturas_y_mates</code></pre>
+                    </li>
+                    <li>Inicia el entorno virtual:
+                        <pre class="code-block"><code>workon facturas_y_mates</code></pre>
+                    </li>
+                    <li>Instalar requirements.txt:
+                        <pre class="code-block"><code>pip install -r requirements.txt</code></pre>
+                    </li>
+                    <li>Crear superusuario:
+                        <pre class="code-block"><code>python manage.py createsuperuser</code></pre>
+                    </li>
+                    <li>Ejecuta las migraciones:
+                        <pre class="code-block"><code>python manage.py makemigrations</code></pre>
+                        <pre class="code-block"><code>python manage.py migrate</code></pre>
+                    </li>
+                    <li>Inicia el servidor de desarrollo:
+                        <pre class="code-block"><code>python manage.py runserver</code></pre>
+                    </li>
+                </ol>
+                <!-- Contribución -->
+                <h2 class="mt-5">Contribución</h2>
+                <p>Tu contribución es bienvenida. Si encuentras errores, tienes ideas para mejoras o quieres añadir nuevas características, 
+                    no dudes en abrir un issue o enviar un pull request.</p>
+                <!-- Contacto -->
+                <h2 class="mt-5">Contacto</h2>
+                <p>Si tienes preguntas o sugerencias, contáctame en <a href="mailto:jesus14sf@gmail.com">jesus14sf@gmail.com</a>.</p>
+            </div>
         </div>
     </div>
-    
+
+    <style>
+        .code-block {
+            background-color: #f8f9fa;
+            border: 1px solid #dee2e6;
+            border-radius: 0.25rem;
+            padding: 1rem;
+            margin-bottom: 1rem;
+            overflow-x: auto;
+        }
+    </style>
+
     {% endblock content %}
+
+
 
     <!-- Bootstrap core JS-->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
 </body>
-
-
 {% endblock %}
