@@ -142,16 +142,32 @@ $(function () {
     vents.add(selectedData);
     // console.log("Data de la lista:", vents.items);
   })
-  .on('select2:open', () => {
-    document.querySelector('.select2-search__field').focus();
-  });;
-  
+    .on('select2:open', () => {
+      document.querySelector('.select2-search__field').focus();
+    });;
+
   // date sale
-  $('#date_joined').datetimepicker({
-    format: 'YYYY-MM-DD',
-    date: moment().format("YYYY-MM-DD"),
-    locate: 'es'
-  });
+  if ($('input[name="action"]').val() === 'edit') {
+
+    var input_datejoined = $('input[name="date_joined"]');
+
+    input_datejoined.datetimepicker({
+      useCurrent: false,
+      format: 'YYYY-MM-DD',
+      locale: 'es',
+      keepOpen: false,
+    });
+
+    input_datejoined.datetimepicker('date', input_datejoined.val());
+
+  } else {
+    $('#date_joined').datetimepicker({
+      format: 'YYYY-MM-DD',
+      date: moment().format("LL"),
+      locale: 'es',
+      //minDate: moment().format("YYYY-MM-DD")
+    });
+  }
 
   $('.btnRemoveAll').on('click', function () {
     if (vents.items.products.length === 0) return false;
@@ -198,20 +214,80 @@ $(function () {
     vents.calculate_invoice();
   }).val(0.21);
   // event submit
-  $('form').on('submit', function (e) {    
+  // Función para manejar el envío del formulario 
+  $('form').on('submit', function (e) {
     e.preventDefault();
-    if(vents.items.products.length === 0){
+    if (vents.items.products.length === 0) {
       message_error('Tiene que tener al menos un producto en su lista');
       return false;
     }
+
     vents.items.date_joined = $('input[name="date_joined"]').val();
     vents.items.cli = $('select[name="cli"]').val();
     var parameters = new FormData()
     parameters.append('action', $('input[name="action"]').val());
     parameters.append('vents', JSON.stringify(vents.items));
-    submit_with_ajax(window.location.pathname, 'Alerta!', '¿Estas seguro de realizar la siguiente acción?', parameters, function () {
-      location.href = '/erp/sale/list/';
-    })
-  })
-  vents.list();
+
+    // Mostrar el modal y confirmar antes de enviar los datos
+    showConfirmationModal(parameters);
+  });
+
+  // Función para mostrar el modal de confirmación y manejar la confirmación
+  function showConfirmationModal(parameters) {
+    var title = 'Alerta!';
+    var content = '¿Estás seguro de realizar la siguiente acción?';
+
+    var modal = `
+    <div class="modal fade" id="ajaxModal" tabindex="-1" aria-labelledby="ajaxModalLabel" aria-hidden="true">
+      <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="ajaxModalLabel">${title}</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <div class="modal-body">
+            <p>${content}</p>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+            <button type="button" class="btn btn-primary" id="ajaxModalConfirm">Confirmar</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  `;
+
+    $('body').append(modal);
+    $('#ajaxModal').modal('show');
+
+    // Evento click del botón "Confirmar" dentro del modal
+    $('#ajaxModalConfirm').on('click', function () {
+      $.ajax({
+        url: window.location.pathname,
+        type: 'POST',
+        data: parameters,
+        dataType: 'json',
+        processData: false,
+        contentType: false,
+      }).done(function (data) {
+        if (!data.hasOwnProperty('error')) {
+          location.href = '/erp/sale/list/';
+        } else {
+          message_error(data.error);
+        }
+        $('#ajaxModal').modal('hide');
+      }).fail(function (jqXHR, textStatus, errorThrown) {
+        alert(textStatus + ': ' + errorThrown);
+        $('#ajaxModal').modal('hide');
+      });
+    });
+
+    // Evento click del botón "Cancelar" dentro del modal
+    $('#ajaxModal').on('hidden.bs.modal', function () {
+      $('#ajaxModalConfirm').off('click'); // Eliminar el evento click para evitar duplicaciones
+      $(this).remove(); // Eliminar el modal del DOM al cerrarlo
+    });
+  }
+
+  //vents.list();
 })

@@ -112,6 +112,10 @@ LANGUAGE_CODE = 'es-ar'
 
 TIME_ZONE = 'America/Argentina/Buenos_Aires'
 
+DATE_FORMAT = '%d %b %Y'
+
+DATE_INPUT_FORMATS = ['%d %b %Y']
+
 USE_I18N = True
 
 USE_TZ = True

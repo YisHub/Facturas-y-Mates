@@ -19,7 +19,7 @@
 {% endblock %}
 {% block content %}
     
-    <form method="post">
+    <form id="form" method="post">
         <div class="card card-primary">
             <div class="card-header">
                 <h3 class="card-title">
@@ -121,6 +121,10 @@
               </div>
         </div>
     </form>
+    <script>
+        vents.items.products = {{det|safe}};
+        vents.list();
+    </script>
 
   {% block javascript %}
     <script type="application/javascript">
