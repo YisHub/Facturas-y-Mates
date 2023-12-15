@@ -83,6 +83,9 @@ function submit_with_ajax(url, title, content, parameters, callback) {
   // Mostrar el modal de Bootstrap
   $('#ajaxModal').modal('show');
 
+  $('#ajaxModal').on('hidden.bs.modal', function () {
+    $('#ajaxModalConfirm').off('click'); // Eliminar el evento click para evitar duplicaciones   
+  });
   
 }
 function alert_action(title, content, callback) {

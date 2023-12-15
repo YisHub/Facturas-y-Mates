@@ -215,66 +215,10 @@ $(function () {
     parameters.append('action', $('input[name="action"]').val());
     parameters.append('vents', JSON.stringify(vents.items));
 
-    // Mostrar el modal y confirmar antes de enviar los datos
-    showConfirmationModal(parameters);
-  });
-
-  // Función para mostrar el modal de confirmación y manejar la confirmación
-  function showConfirmationModal(parameters) {
-    var title = 'Alerta!';
-    var content = '¿Estás seguro de realizar la siguiente acción?';
-
-    var modal = `
-    <div class="modal fade" id="ajaxModal" tabindex="-1" aria-labelledby="ajaxModalLabel" aria-hidden="true">
-      <div class="modal-dialog modal-dialog-centered">
-        <div class="modal-content">
-          <div class="modal-header">
-            <h5 class="modal-title" id="ajaxModalLabel">${title}</h5>
-            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-          </div>
-          <div class="modal-body">
-            <p>${content}</p>
-          </div>
-          <div class="modal-footer">
-            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
-            <button type="button" class="btn btn-primary" id="ajaxModalConfirm">Confirmar</button>
-          </div>
-        </div>
-      </div>
-    </div>
-  `;
-
-    $('body').append(modal);
-    $('#ajaxModal').modal('show');
-
-    // Evento click del botón "Confirmar" dentro del modal
-    $('#ajaxModalConfirm').on('click', function () {
-      $.ajax({
-        url: window.location.pathname,
-        type: 'POST',
-        data: parameters,
-        dataType: 'json',
-        processData: false,
-        contentType: false,
-      }).done(function (data) {
-        if (!data.hasOwnProperty('error')) {
-          location.href = '/erp/sale/list/';
-        } else {
-          message_error(data.error);
-        }
-        $('#ajaxModal').modal('hide');
-      }).fail(function (jqXHR, textStatus, errorThrown) {
-        alert(textStatus + ': ' + errorThrown);
-        $('#ajaxModal').modal('hide');
-      });
-    });
-
-    // Evento click del botón "Cancelar" dentro del modal
-    $('#ajaxModal').on('hidden.bs.modal', function () {
-      $('#ajaxModalConfirm').off('click'); // Eliminar el evento click para evitar duplicaciones
-      $(this).remove(); // Eliminar el modal del DOM al cerrarlo
-    });
-  }
+    submit_with_ajax(window.location.pathname, 'Alerta!', '¿Estas seguro de realizar la siguiente acción?', parameters, function () {
+      location.href = '/erp/sale/list/';
+    })
+  })
 
   //vents.list();
 
