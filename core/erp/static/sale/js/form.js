@@ -99,6 +99,32 @@ var vents = {
   }
 }
 
+function formatRepo(repo) {
+  if (repo.loading) {
+    return repo.text;
+  }
+
+  var option = $(
+    `<div class="wrapper container">
+      <div class="row">
+        <div class="col-lg-1">
+          <img src="${repo.image}" class="img-fluid img-thumbnail d-block mx-auto rounded">
+        </div>
+        <div class="col-lg-11 text-left shadow-sm">
+          <p style="margin-bottom: 0;">
+            <b>Nombre:</b> ${repo.name}<br>
+            <b>Categoria:</b> ${repo.cat.name}<br>
+            <b>PVP:</b> <span class="badge bg-warning">$${repo.pvp}</span>
+          </p>
+        </div>
+      </div>
+    </div>`
+  );
+
+  return option;
+
+}
+
 $(function () {
   $('.btnRemoveAll').hide();
   $('.select2').select2({
@@ -106,45 +132,6 @@ $(function () {
     language: 'es',
     placeholder: "Seleccione el cliente",
   });
-  // search products
-  $('select[name="search"]').select2({
-    theme: "bootstrap-5",
-    allowClear: true,
-    ajax: {
-      delay: 250,
-      type: 'POST',
-      url: window.location.pathname,
-      data: function (params) {
-        var queryParameters = {
-          term: params.term,
-          action: 'search_products'
-        }
-        return queryParameters;
-      },
-      processResults: function (data) {
-        return {
-          results: data
-        };
-      },
-    },
-    placeholder: 'Ingrese una descripción del producto',
-    minimumInputLength: 1,
-
-  });
-
-  $('select[name="search"]').on('select2:select', function (e) {
-    $('.btnRemoveAll').show();
-    console.clear();
-    var selectedData = e.params.data;
-    // console.log("Data seleccionada:", selectedData);
-    selectedData.cant = 1;
-    selectedData.subtotal = 0.00;
-    vents.add(selectedData);
-    // console.log("Data de la lista:", vents.items);
-  })
-    .on('select2:open', () => {
-      document.querySelector('.select2-search__field').focus();
-    });;
 
   // date sale
   if ($('input[name="action"]').val() === 'edit') {
@@ -290,4 +277,36 @@ $(function () {
   }
 
   //vents.list();
+
+  // search products 2
+  $('select[name="search"]').select2({
+    theme: "bootstrap-5",
+    allowClear: true,
+    ajax: {
+      delay: 250,
+      type: 'POST',
+      url: window.location.pathname,
+      data: function (params) {
+        var queryParameters = {
+          term: params.term,
+          action: 'search_products'
+        }
+        return queryParameters;
+      },
+      processResults: function (data) {
+        return {
+          results: data
+        };
+      },
+    },
+    placeholder: 'Ingrese una descripción del producto',
+    minimumInputLength: 1,
+    templateResult: formatRepo,
+  }).on('select2:select', function (e) {
+    var data = e.params.data;
+    data.cant = 1;
+    data.subtotal = 0.00;
+    vents.add(data);
+    $(this).val('').trigger('change');
+  })
 })

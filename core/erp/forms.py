@@ -142,10 +142,6 @@ class ClientForm(ModelForm):
 
 class SaleForm(ModelForm):
 
-    search = ModelChoiceField(queryset=Product.objects.none(), widget=Select(attrs={
-        'class': 'form-control select2',
-        'style': 'width: 100%',
-    }), required=False)
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
 
