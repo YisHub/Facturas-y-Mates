@@ -1,0 +1,57 @@
+{% extends 'index.html' %}
+{% load static %}
+{% block content %}
+
+<section class="page-section about-heading">
+    <div class="container">
+        <img class="img-fluid rounded about-heading-img mb-3 mb-lg-0" src="{% static 'img/about.jpg' %}" alt="..." />
+        <div class="about-heading-content">
+            <div class="row">
+                <div class="col-xl-9 col-lg-10 mx-auto">
+                    <!-- Agregado de contenido adicional -->
+                    <div class="bg-faded rounded p-5 mt-5">
+                        <h2 class="section-heading mb-4">
+                            <span class="section-heading-upper">Facturas y Mates</span>
+                        </h2>
+                        <p>Facturas y Mates es una aplicación web desarrollada con Django para gestionar inventario, ventas y facturación.</p>
+                        <h3 class="mb-3">Funcionalidades</h3>
+                        <p>Las principales funcionalidades que incluye Facturas y Mates son:</p>
+                        <h4>Gestión de inventario</h4>
+                        <ul>
+                            <li>Registro de productos con categorización</li>
+                            <li>Seguimiento de stock disponible</li>
+                            <li>Reportes de inventario <em>(próximamente)</em></li>
+                        </ul>
+                        <h4>Facturación</h4>
+                        <ul>
+                            <li>Generación y envío de facturas</li>
+                            <li>Seguimiento a facturas emitidas</li>
+                        </ul>
+                        <h4>Gestión de Clientes</h4>
+                        <ul>
+                            <li>Registro de datos de clientes</li>
+                            <li>Listado y búsqueda de clientes</li>
+                            <li>Vinculación de facturas a clientes</li>
+                        </ul>
+                        <h3>Tecnologías</h3>
+                        <ul>
+                            <li>Python</li>
+                            <li>Django</li>
+                            <li>PostgreSQL</li>
+                            <li>Bootstrap</li>
+                            <li>jQuery</li>
+                            <li>DataTables</li>
+                            <li>Select2</li>
+                            <li>Pillow</li>
+                        </ul>
+                        <h3>Contacto</h3>
+                        <p>Si tienes preguntas o sugerencias, contáctame en jesus14sf@gmail.com.</p>
+                    </div>
+                    <!-- Fin del contenido adicional -->
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+{% endblock %}
