@@ -53,24 +53,30 @@ Las principales funcionalidades que incluye Facturas y Mates son:
     workon facturas_y_mates
     ```
 
-5. Instalar requirements.txt
+5. Asegúrate de tener instalado libffi-dev:
+
+   ```bash
+   sudo apt-get install libffi-dev
+   ```
+
+6. Instalar requirements.txt
    ```bash
     pip install -r deploy/requirements.txt 
     ```
-6. Crear superusuario
+7. Crear superusuario
 
     ```bash
     python manage.py createsuperuser
     ```
    
-7. Ejecuta las migraciones:
+8. Ejecuta las migraciones:
 
     ```bash
     python manage.py makemigrations
     python manage.py migrate
     ```
 
-8. Inicia el servidor de desarrollo:
+9. Inicia el servidor de desarrollo:
 
     ```bash
     python manage.py runserver
