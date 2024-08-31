@@ -4,16 +4,16 @@ Facturas y Mates es una aplicación web desarrollada con Django para gestionar i
 ## Funcionalidades
 Las principales funcionalidades que incluye Facturas y Mates son:
 
-## Gestión de inventario
+### Gestión de inventario
 - Registro de productos con categorización
 - Seguimiento de stock disponible
 - Reportes de inventario <em>(próximamente)</em>
 
-## Facturación
+### Facturación
 - Generación y envío de facturas
 - Seguimiento a facturas emitidas
 
-## Gestión de Clientes
+### Gestión de Clientes
 - Registro de datos de clientes
 - Listado y búsqueda de clientes
 - Vinculación de facturas a clientes
