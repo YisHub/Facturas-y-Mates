@@ -107,10 +107,8 @@ function formatRepo(repo) {
   var option = $(
     `<div class="wrapper container">
       <div class="row">
-        <div class="col-lg-1">
-          <img src="${repo.image}" class="img-fluid img-thumbnail d-block mx-auto rounded">
-        </div>
-        <div class="col-lg-11 text-left shadow-sm">
+        <div class="col-lg-12 text-left shadow-sm">
+          <img src="${repo.image}" style="width: 100px; height: 100px; margin-right: 20px;" class="img-thumbnail rounded float-start">
           <p style="margin-bottom: 0;">
             <b>Nombre:</b> ${repo.name}<br>
             <b>Categoria:</b> ${repo.cat.name}<br>
