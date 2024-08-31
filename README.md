@@ -81,6 +81,14 @@ Las principales funcionalidades que incluye Facturas y Mates son:
     ```bash
     python manage.py runserver
     ```
+
+## Pruebas y Desarrollo
+Para realizar pruebas y desarrollo, puedes utilizar la base de datos incluida en el archivo db.sqlite3.demo, que contiene datos de ejemplo para facilitar las pruebas.
+
+ ```bash
+    cp db.sqlite3.demo db.sqlite3
+ ```
+    
 ## Contribución
 
 ¡Tu contribución es bienvenida! Si encuentras errores, tienes ideas para mejoras o quieres añadir nuevas características, no dudes en abrir un issue o enviar un pull request.
