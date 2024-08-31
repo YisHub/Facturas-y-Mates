@@ -63,17 +63,17 @@ Las principales funcionalidades que incluye Facturas y Mates son:
    ```bash
     pip install -r requirements.txt 
     ```
-7. Crear superusuario
+7. Ejecuta las migraciones:
+
+    ```bash
+    python manage.py makemigrations erp homepage login user
+    python manage.py migrate
+    ```
+   
+8. Crear superusuario
 
     ```bash
     python manage.py createsuperuser
-    ```
-   
-8. Ejecuta las migraciones:
-
-    ```bash
-    python manage.py makemigrations
-    python manage.py migrate
     ```
 
 9. Inicia el servidor de desarrollo:
