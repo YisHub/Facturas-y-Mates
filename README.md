@@ -61,7 +61,7 @@ Las principales funcionalidades que incluye Facturas y Mates son:
 
 6. Instalar requirements.txt
    ```bash
-    pip install -r deploy/requirements.txt 
+    pip install -r requirements.txt 
     ```
 7. Crear superusuario
 
